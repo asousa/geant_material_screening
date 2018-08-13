@@ -52,12 +52,12 @@ EventAction::~EventAction()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-
 void EventAction::AddEdep(G4double edep)
 {
     edep += fEdep;
 }
 
+// Cumulative sum of energy deposited across a single event
 void EventAction::AddEdep_multiple(G4String solid, G4double edep)
 {
     if (solid =="detector") { fEdep += edep;}
@@ -77,12 +77,6 @@ void EventAction::BeginOfEventAction(const G4Event*)
   fEdep_window = 0.;
   fEdep_entering_detector = 0.;
 }
-
-// void EventAction::markEntered()
-// {
-//   entered = true;
-// }
-
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -104,9 +98,7 @@ void EventAction::EndOfEventAction(const G4Event* event)
 
   // Window:
   man->FillH1(3,fEdep_window);
-
   man->FillH1(4,fEdep_entering_detector);
-  
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

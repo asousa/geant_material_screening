@@ -79,6 +79,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
     fEventAction->AddEdep_multiple("entering", track->GetKineticEnergy());  
   }
   
+  // Add the energy from this step to the appropriate volume
   fEventAction->AddEdep_multiple(volName, edepStep);
 
 

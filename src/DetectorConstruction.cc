@@ -154,13 +154,13 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     0*deg, 360*deg);
                       
   window_volume =                         
-    new G4LogicalVolume(window_shape,         //its solid
-                        window_material,          //its material
+    new G4LogicalVolume(window_shape,        //its solid
+                        window_material,     //its material
                         "window");           //its name
                
   new G4PVPlacement(0,                       //no rotation
-                    window_pos,                    //at position
-                    window_volume,             //its logical volume
+                    window_pos,              //at position
+                    window_volume,           //its logical volume
                     "window",                //its name
                     logicEnv,                //its mother  volume
                     false,                   //no boolean operation
@@ -169,7 +169,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
       
   // Detector
-
 
   // Silicon detector
   // G4Material* detector_mat = nist->FindOrBuildMaterial("G4_Si");
@@ -184,8 +183,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   CZT->AddElement(Te, 50*perCent);
 
 
-
-
   G4ThreeVector detector_pos = G4ThreeVector(0, 0, 0);
 
 
@@ -194,26 +191,23 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     0*deg, 360*deg);
 
   G4LogicalVolume* detector_vol =                         
-    new G4LogicalVolume(detector_shape,         //its solid
-                        CZT,          //its material
-                        "detector");           //its name
+    new G4LogicalVolume(detector_shape,      //its solid
+                        CZT,                 //its material
+                        "detector");         //its name
                
   new G4PVPlacement(0,                       //no rotation
-                    detector_pos,                    //at position
-                    detector_vol,                //its logical volume
-                    "detector",                //its name
+                    detector_pos,            //at position
+                    detector_vol,            //its logical volume
+                    "detector",              //its name
                     logicEnv,                //its mother  volume
                     false,                   //no boolean operation
                     0,                       //copy number
                     checkOverlaps);          //overlaps checking
                 
-  // Set Shape2 as scoring volume
-  //
+  // Set Shape2 as scoring volume 
   fScoringVolume = detector_vol;
 
-  //
   //always return the physical World
-  //
   return physWorld;
 }
 
@@ -253,7 +247,6 @@ void DetectorConstruction::SetWindowMaterial(G4String materialChoice)
 }
 
 
-
 void DetectorConstruction::UpdateGeometry()
 {
   //  delete payloadSD;
@@ -262,8 +255,6 @@ void DetectorConstruction::UpdateGeometry()
 
   G4RunManager::GetRunManager()->GeometryHasBeenModified();
   G4RunManager::GetRunManager()->ReinitializeGeometry();
-
-
 }
 
 
